@@ -33,7 +33,9 @@ def test_get_particular_account(testing_client):
     response = testing_client.get(
         '/accounts/1')
     assert response.status_code == 200
-
+def test_get_particular_account_invalid_id(testing_client):
+    response = testing_client.get('/accounts/999999')
+    assert response.status_code == 404 
 
 def test_update(testing_client):
     response = testing_client.put('/accounts/1',json={'name': 'John Doe', 'currency': '€'})
